@@ -5,13 +5,13 @@ playlist YouTube dalam satu rak — tanpa akun, tanpa cloud, tanpa telemetri.
 
 ## Fitur
 
-### Koleksi & riwayat baca
+### Koleksi dan riwayat baca
 
-- Semua koleksi dan progress disimpan di `data/db.json` **di perangkat sendiri**.
+- Semua koleksi dan kemajuan baca disimpan di `data/db.json` **di perangkat sendiri**.
 - Chapter **pertama yang belum dibaca** yang ditunjuk, bukan yang terbaru.
-  Contoh: sudah baca Chapter 28, lalu ada Chapter 29 & 30 → app menunjuk **Chapter 29**.
+  Contoh: sudah baca Chapter 28, lalu ada Chapter 29 dan 30 → aplikasi menunjuk **Chapter 29**.
 - Status **Belum dibaca** / **Sudah dibaca** per koleksi, dengan badge di kartu.
-- Pencarian & filter (Semua / Komik / YouTube / HaHiatus).
+- Pencarian dan filter (Semua / Komik / YouTube / HaHiatus).
 
 ### Perbarui dari sumber
 
@@ -23,14 +23,14 @@ chapter pertama yang belum dibaca. Didukung parsing `table#daftarChapter`,
 
 Komik yang lama tidak update atau sedang disingkirkan bisa dipindahkan ke rak
 terpisah lewat ikon **⏸**, sehingga tidak memenuhi halaman utama. Peringatan
-"**sudah N hari tidak update**" muncul otomatis bila rilis terakhir sudah > 30 hari.
+"**sudah N hari tidak update**" muncul otomatis bila rilis terakhir sudah lebih dari 30 hari.
 
 ### Playlist YouTube
 
 - Video **terbaru** dideteksi dari metadata umur tiap video — benar untuk playlist
   *uploads* (terbaru di depan) maupun playlist manual (terbaru di belakang).
 - Diputar dari video terbaru dengan antrean playlist tetap aktif.
-- Status **Belum ditonton** / **Sudah ditonton** + posisi video terakhir diputar.
+- Status **Belum ditonton** / **Sudah ditonton** plus posisi video terakhir diputar.
 
 ### Panel baca
 
@@ -41,24 +41,24 @@ terpisah lewat ikon **⏸**, sehingga tidak memenuhi halaman utama. Peringatan
 ### Rak Support
 
 Kode QRIS untuk mendukung pengembangan, bisa dibuka dari menu **Rak Support**.
-Ganti dengan QRIS-mu sendiri lewat `RAK_QRIS_FILE`.
+Ganti dengan QRIS milikmu sendiri lewat `RAK_QRIS_FILE`.
 
-### Ganti sumber / mirror
+### Ganti sumber atau mirror
 
-Kalau situs komik down, ikon **⇄** mengganti URL ke mirror lain. **Riwayat baca
-tetap ikut** dan chapter langsung dideteksi ulang dari situs baru.
+Kalau situs komik sedang down, ikon **⇄** mengganti tautan ke mirror lain. **Riwayat baca
+tetap ikut** dan daftar chapter langsung dideteksi ulang dari situs baru.
 
 ## Keamanan
 
-- Server default `0.0.0.0`; password **wajib** di mode server
+- Server bawaan `0.0.0.0`; password **wajib** di mode server
   (hash scrypt + sesi cookie HttpOnly/SameSite=Strict, rate limit login).
 - `RAK_NO_AUTH=1` untuk mematikan password sementara.
-- Guard **anti-SSRF** untuk proxy gambar & scraping: menolak IP privat, loopback,
+- Guard **anti-SSRF** untuk proxy gambar dan scraping: menolak IP privat, loopback,
   cloud metadata, dan hostname internal (cek DNS anti-rebinding).
 - **Anti prototype pollution** pada body request.
 - Berkas proyek memakai **daftar putih** — `data/db.json`, `.env`, dan `server.js`
   tidak bisa diunduh lewat HTTP.
-- Rate limit 40 req/menit untuk proxy gambar, body dibatasi 256 KB.
+- Rate limit 40 permintaan per menit untuk proxy gambar, body dibatasi 256 KB.
 
 Rincian lengkap: [SECURITY.md](SECURITY.md) · Panduan server: [DEPLOY.md](DEPLOY.md)
 
@@ -89,5 +89,5 @@ MIT — bebas dipakai, diubah, dan dibagikan.
 
 ## Terima kasih
 
-Terima kasih sudah dipakai & didukung lewat QRIS. Reported bug dan pull request
+Terima kasih sudah memakai dan mendukung lewat QRIS. Laporan bug dan pull request
 sangat diterima di [Issues](https://github.com/mrofiq466/rak-center/issues).

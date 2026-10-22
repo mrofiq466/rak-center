@@ -5,8 +5,8 @@ Terima kasih sudah mau membantu Rak!
 ## Menjalankan lokal
 
 ```sh
-git clone <url-repo-ini>
-cd rak-komik-youtube
+git clone https://github.com/mrofiq466/rak-center.git
+cd rak-center
 npm install
 npm start
 ```
@@ -18,9 +18,9 @@ Butuh **Node.js 18+** dan (untuk uji browser) **Google Chrome** yang sudah terpa
 Jalankan semua pemeriksaan:
 
 ```sh
-npm test           # uji keamanan + autentikasi
-npm run test:browser   # uji Chrome & Firefox (butuh server jalan)
-node test-e2e.js   # uji end-to-end di Chrome
+npm test               # uji keamanan + autentikasi
+npm run test:browser   # uji Chrome dan Firefox (butuh server jalan)
+node test-e2e.js       # uji end-to-end di Chrome
 node test-youtube.js   # uji playlist YouTube (opsional)
 ```
 
@@ -55,8 +55,11 @@ Kalau `geckodriver` tidak ada di PATH, set `GECKODRIVER_PATH=/path/ke/geckodrive
 ```
 server.js        # server Express + API
 lib/guard.js     # guard keamanan (SSRF, sanitasi body, rate limit)
+lib/auth.js      # password (scrypt) + sesi cookie
+lib/browser.js   # adapter browser untuk pengujian (Puppeteer + Selenium)
 app.js           # logika frontend
 index.html       # kerangka halaman
+login.html       # halaman login
 styles.css       # style utama
 styles-extra.css # style tambahan
 data/            # data pengguna (diabaikan git)
@@ -65,16 +68,17 @@ data/            # data pengguna (diabaikan git)
 ## Menambah sumber komik baru
 
 Deteksi chapter ada di `server.js` pada handler `/api/fetch-meta`. Cara kerjanya
-mencari link yang mengandung pola chapter (`chapter`, `bab`, `episode`, `ch-`)
-lalu mengambil nomornya dari URL, dengan fallback ke teks tautan.
+mencari tautan yang mengandung pola chapter (`chapter`, `bab`, `episode`, `ch-`)
+lalu mengambil nomornya dari URL, dengan cadangan ke teks tautan.
 
 Kalau sebuah situs tidak terdeteksi, buka issue berisi:
 1. URL halaman komiknya
 2. Contoh struktur HTML daftar chapter-nya
 
-Sangat membantu kalauertakan potongan HTML (10 baris cukup).
+Sangat membantu kalau sertakan potongan HTML (10 baris cukup).
 
 ## Data pengguna
 
-Jangan pernah meng-commit `data/db.json` — isinya riwayat baca pribadi pengguna.
-Sudah tercakup `.gitignore`, tapi tetap tolong perhatikan.
+Jangan pernah meng-commit `data/db.json` maupun `data/auth.json` — isinya riwayat
+baca pribadi pengguna dan hash password. Sudah tercakup `.gitignore`, tapi tetap
+tolong perhatikan.

@@ -5,8 +5,8 @@ Rak siap dipakai di server VPS yang terhubung ke Cloudflare Tunnel.
 ## 1. Siapkan di server
 
 ```sh
-git clone <url-repo-ini>
-cd rak-komik-youtube
+git clone https://github.com/mrofiq466/rak-center.git
+cd rak-center
 npm install --omit=dev
 cp .env.example .env
 nano .env
@@ -17,11 +17,14 @@ Isi `.env`:
 ```env
 HOST=0.0.0.0
 PORT=3000
+RAK_NO_AUTH=0
 RAK_PASSWORD=password-kuat-kamu-disini
 ```
 
-> `RAK_PASSWORD` wajib diisi untuk server production. Kalau dikosongkan, server
+> `RAK_PASSWORD` wajib diisi untuk server produksi. Kalau dikosongkan, server
 > membuat password acak dan menampilkannya di terminal (sekali saja).
+>
+> `RAK_NO_AUTH=0` berarti password aktif. **Jangan** diisi `1` di server publik.
 
 ## 2. Jalankan sebagai service (systemd)
 
@@ -35,12 +38,12 @@ After=network.target
 [Service]
 Type=simple
 User=YOUR_USER
-WorkingDirectory=/home/YOUR_USER/rak-komik-youtube
+WorkingDirectory=/home/YOUR_USER/rak-center
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=5
 Environment=NODE_ENV=production
-EnvironmentFile=/home/YOUR_USER/rak-komik-youtube/.env
+EnvironmentFile=/home/YOUR_USER/rak-center/.env
 
 [Install]
 WantedBy=multi-user.target
@@ -101,13 +104,14 @@ Karena tunnel membuat aplikasi bisa diakses publik, tambahkan **Cloudflare Acces
 Dengan Access, hanya email yang kamu izinkan yang bisa sampai ke aplikasi — dan
 password Rak menjadi lapisan kedua.
 
-## 5. Checklist keamanan server
+## 5. Daftar periksa keamanan server
 
-- [ ] Firewall hanya izinkan SSH (22) dan Cloudflare (7844). **Jangan** buka port 3000 ke publik.
+- [ ] Firewall hanya mengizinkan SSH (22) dan Cloudflare (7844). **Jangan** buka port 3000 ke publik.
 - [ ] `RAK_PASSWORD` kuat dan unik.
+- [ ] `RAK_NO_AUTH=0` (password aktif).
 - [ ] Cloudflare Access aktif.
-- [ ] `data/` tidak pernah masuk git (sudah otomatis lewat `.gitignore`).
-- [ ] Backup `data/db.json` secara berkala — di situ riwayat bacamu.
+- [ ] Folder `data/` tidak pernah masuk git (sudah otomatis lewat `.gitignore`).
+- [ ] Cadangkan `data/db.json` secara berkala — di situ riwayat bacamu.
 - [ ] Jalankan `npm test` (uji keamanan) setelah perubahan kode.
 
 ## Catatan
@@ -117,5 +121,5 @@ password Rak menjadi lapisan kedua.
 - Kalau kamu memakai **service token** Cloudflare untuk akses programatik, kirim
   header `CF-Access-Client-Id` dan `CF-Access-Client-Secret`; atau pakai token
   internal Rak lewat header `X-Rak-Token` (atur `RAK_TOKEN` di `.env`).
-- `RAK_ALLOW_PRIVATE_FETCH=1` hanya boleh dipakai jika kamu memang mau app
-  menjangkau alamat internal (misal mirror komik di NAS sendiri). Default jangan.
+- `RAK_ALLOW_PRIVATE_FETCH=1` hanya boleh dipakai jika kamu memang ingin aplikasi
+  menjangkau alamat internal (misalnya mirror komik di NAS sendiri). Sebaiknya jangan.

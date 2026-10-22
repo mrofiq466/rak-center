@@ -54,7 +54,7 @@ Panduan lengkap ada di [DEPLOY.md](DEPLOY.md).
 | `RAK_PASSWORD` | acak (dibuat saat pertama jalan) | Password Rak. Kalau diisi, selalu menggantikan hash yang tersimpan. |
 | `RAK_TOKEN` | kosong | Token untuk akses programatik lewat header `X-Rak-Token`. |
 | `RAK_NO_AUTH` | kosong | Set `1` untuk mematikan password (jangan di server publik). |
-| `RAK_ALLOW_PRIVATE_FETCH` | `0` | Set `1` hanya jika kamu memang ingin app menjangkau alamat internal (mis. komik di NAS sendiri). |
+| `RAK_ALLOW_PRIVATE_FETCH` | `0` | Set `1` hanya jika kamu memang ingin aplikasi menjangkau alamat internal (mis. komik di NAS sendiri). |
 
 Semua variabel bisa ditulis di file `.env` (sudah masuk `.gitignore`).
 
