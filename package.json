@@ -1,0 +1,65 @@
+{
+  "name": "rak-center",
+  "version": "1.0.0",
+  "description": "Rak lokal untuk komik & playlist YouTube: riwayat baca, deteksi chapter terbaru, dan Rak HaHiatus. Data tersimpan di perangkat sendiri.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrofiq466/rak-center.git"
+  },
+  "homepage": "https://github.com/mrofiq466/rak-center#readme",
+  "bugs": {
+    "url": "https://github.com/mrofiq466/rak-center/issues"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test-security.js && node test-auth.js",
+    "test:browser": "node test-browser.js",
+    "test:e2e": "node test-e2e.js",
+    "test:youtube": "node test-youtube.js",
+    "test:login": "node test-login-ui.js",
+    "test:reader": "node test-reader.js",
+    "test:support": "node test-support.js",
+    "reset": "node -e \"const fs=require('fs');fs.rmSync('data/db.json',{force:true});fs.rmSync('data/auth.json',{force:true});console.log('data db.json + auth.json dihapus')\""
+  },
+  "keywords": [
+    "manga",
+    "komik",
+    "youtube",
+    "playlist",
+    "local",
+    "self-hosted",
+    "reading-tracker"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.0.0",
+    "selenium-webdriver": "^4.51.0"
+  },
+  "files": [
+    "index.html",
+    "login.html",
+    "styles.css",
+    "styles-extra.css",
+    "app.js",
+    "favicon.svg",
+    "qris.png",
+    "server.js",
+    "lib/",
+    "README.md",
+    "SECURITY.md",
+    "DEPLOY.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    ".env.example"
+  ]
+}
