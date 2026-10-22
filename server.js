@@ -151,6 +151,14 @@ app.get('/:file', (req, res, next) => {
   res.sendFile(path.join(__dirname, req.params.file));
 });
 
+// Screenshot contoh (dipakai README). Hanya .png, tanpa path traversal.
+app.get('/screenshots/:file', (req, res, next) => {
+  if (!/^[\w.-]+\.png$/i.test(req.params.file)) return next();
+  res.sendFile(path.join(__dirname, 'screenshots', req.params.file), (err) => {
+    if (err) next();
+  });
+});
+
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
 /* ---------------------------------------------------------------- utils */
@@ -598,7 +606,7 @@ app.listen(PORT, HOST, () => {
     `  Rak berjalan di http://${displayHost}:${PORT}`,
     `  • listen   : ${HOST} (${IS_LOOPBACK ? 'hanya perangkat ini' : 'terbuka ke jaringan'})`,
     `  • data     : ${DB_PATH}`,
-    `  • auth     : ${AUTH_REQUIRED ? 'password wajib' : 'DIMATIKAN (RAK_NO_AUTH=1)'}`,
+    `  • auth     : ${AUTH_REQUIRED ? 'password wajib' : (IS_LOOPBACK ? 'tidak perlu (hanya loopback)' : 'DIMATIKAN (RAK_NO_AUTH=1)')}`,
     ''
   ];
   if (!AUTH_REQUIRED && !IS_LOOPBACK) {
@@ -606,8 +614,7 @@ app.listen(PORT, HOST, () => {
     lines.push('     Jangan buka server ini ke internet tanpa menyalakan password lagi');
     lines.push('     (hapus RAK_NO_AUTH=1 di .env).');
     lines.push('');
-  }
-  if (AUTH_REQUIRED) {
+  }  if (AUTH_REQUIRED) {
     lines.push('  🔒  Rak ini dilindungi password.');
     if (generatedPassword) {
       lines.push('      Password (simpan baik-baik, hanya ditampilkan sekali):');
