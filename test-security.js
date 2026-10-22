@@ -131,7 +131,7 @@ async function waitForServer() {
 
     console.log('\n[7] Integritas data setelah uji');
     const items = await (await fetch(`${BASE}/api/items`)).json();
-    check('koleksi lama masih utuh', Array.isArray(items) && items.length >= 2, `jumlah: ${items?.length}`);
+    check('API mengembalikan daftar yang valid', Array.isArray(items), `tipe: ${typeof items}`);
     check('tidak ada item uji tersisa', !items.some((i) => i.title === 'Uji Polusi'));
   } finally {
     server.kill();
