@@ -18,12 +18,11 @@ Isi `.env`:
 HOST=0.0.0.0
 PORT=3000
 RAK_NO_AUTH=0
-RAK_PASSWORD=password-kuat-kamu-disini
+RAK_PASSWORD=ganti-dengan-password-kuat-miliknya
 ```
 
 > `RAK_PASSWORD` wajib diisi untuk server produksi. Kalau dikosongkan, server
 > membuat password acak dan menampilkannya di terminal (sekali saja).
->
 > `RAK_NO_AUTH=0` berarti password aktif. **Jangan** diisi `1` di server publik.
 
 ## 2. Jalankan sebagai service (systemd)

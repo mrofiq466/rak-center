@@ -18,13 +18,18 @@ Butuh **Node.js 18+** dan (untuk uji browser) **Google Chrome** yang sudah terpa
 Jalankan semua pemeriksaan:
 
 ```sh
-npm test               # uji keamanan + autentikasi
+npm test               # uji keamanan + autentikasi + ejaan
+npm run spellcheck     # cek ejaan (kamus Indonesia + Inggris)
 npm run test:browser   # uji Chrome dan Firefox (butuh server jalan)
 node test-e2e.js       # uji end-to-end di Chrome
 node test-youtube.js   # uji playlist YouTube (opsional)
 ```
 
 Semua harus lulus dan tanpa error di console browser.
+
+Kata-kata khusus proyek (nama class, istilah teknis, singkatan) didaftarkan di
+`.cspell.json` pada bagian `words`. Tambahkan di sana kalau cspell menandai kata
+yang sebenarnya sah.
 
 ### Uji di Firefox
 

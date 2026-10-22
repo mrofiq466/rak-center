@@ -96,7 +96,8 @@ Butuh **Node.js 18+** ([unduh](https://nodejs.org)). Perintah yang sama berlaku 
 | Perintah | Kegunaan |
 |---|---|
 | `npm run dev` | Server otomatis memuat ulang saat kode diubah |
-| `npm test` | Uji keamanan (SSRF, prototype pollution, kebocoran berkas) dan autentikasi |
+| `npm test` | Uji keamanan (SSRF, prototype pollution, kebocoran berkas), autentikasi, dan ejaan |
+| `npm run spellcheck` | Cek ejaan dokumen & kode (kamus Indonesia + Inggris) |
 | `npm run test:browser` | Uji kompatibilitas di **Chrome dan Firefox** |
 | `npm run test:e2e` | Uji end-to-end di browser (butuh Chrome) |
 | `npm run test:reader` | Uji panel baca (tinggi, zoom, iframe) |
@@ -237,7 +238,8 @@ Seluruh skrip uji menjalankan pemeriksaan yang sama di browser sungguhan.
 
 ```sh
 npm start                       # jalankan di terminal terpisah
-npm test                        # keamanan + autentikasi (memicu server sendiri)
+npm test                        # keamanan + autentikasi + ejaan (memicu server sendiri)
+npm run spellcheck              # cek ejaan saja
 npm run test:browser            # Chrome dan Firefox
 node test-e2e.js                # tambah koleksi + Rak HaHiatus
 node test-login-ui.js           # halaman login

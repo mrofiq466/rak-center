@@ -14,7 +14,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "test": "node test-security.js && node test-auth.js",
+    "test": "node test-security.js && node test-auth.js && npm run spellcheck",
+    "spellcheck": "cspell --no-progress \"*.md\" \"*.js\" \"*.html\" \"*.json\" \".env.example\"",
     "test:browser": "node test-browser.js",
     "test:e2e": "node test-e2e.js",
     "test:youtube": "node test-youtube.js",
@@ -42,6 +43,8 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
+    "@cspell/dict-id-id": "^1.0.9",
+    "cspell": "^10.4.0",
     "puppeteer-core": "^24.0.0",
     "selenium-webdriver": "^4.51.0"
   },

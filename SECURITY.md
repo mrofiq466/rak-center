@@ -60,13 +60,13 @@ Semua variabel bisa ditulis di file `.env` (sudah masuk `.gitignore`).
 
 ## Melaporkan Kerentanan
 
-Jika menemukan masalah keamanan, buka issue publik di repo ini (kecualiidityanya
-berpotensi merusak, laporkan lewat pesan pribadi terlebih dahulu).
+Jika menemukan masalah keamanan, buka issue publik di repo ini — kecuali situasinya
+berpotensi merusak, laporkan lewat pesan pribadi terlebih dahulu.
 
-Before sharing, please run the security tests:
+Sebelum membagikan, jalankan uji keamanan:
 
 ```sh
-node test-security.js
+npm test
 ```
 
 ## Catatan untuk Pengguna
